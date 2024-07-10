@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import Navbar from '@/components/Navbar';
 
 const chillax = localFont({
     src: '../assets/fonts/Chillax-Variable.woff2',
@@ -22,6 +23,7 @@ export default function RootLayout({
             <body
                 className={`${chillax.className} bg-brand-black text-brand-white`}
             >
+                <Navbar />
                 {children}
             </body>
         </html>
