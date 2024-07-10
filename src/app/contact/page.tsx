@@ -1,6 +1,6 @@
+import ContactForm from '@/components/ContactForm';
 import Heading from '@/components/Heading';
 import Logo from '@/components/Logo';
-import React from 'react';
 
 export default function ContactPage() {
     return (
@@ -18,7 +18,7 @@ export default function ContactPage() {
                     scelerisque. Arcu non odio euismod lacinia. Tortor aliquam
                     nulla facilisi cras fermentum odio eu.
                 </p>
-                {/* <ContactForm /> */}
+                <ContactForm />
             </div>
         </main>
     );
