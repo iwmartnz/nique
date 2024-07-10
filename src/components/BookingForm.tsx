@@ -1,0 +1,218 @@
+'use client';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { format } from 'date-fns';
+
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import {
+    Form,
+    FormControl,
+    FormDescription,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Calendar } from '@/components/ui/calendar';
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@/components/ui/popover';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+    SelectGroup,
+    SelectLabel,
+} from '@/components/ui/select';
+import { CalendarIcon } from '@/components/Icon';
+
+const formSchema = z.object({
+    name: z.string().min(2, {
+        message: 'Name must have at least 2 characters.',
+    }),
+    numberOfGuests: z.coerce.number().min(0).max(10),
+    date: z.date({
+        required_error: 'A date of reservation is required.',
+    }),
+    time: z.string({
+        required_error: 'A time of reservation is required.',
+    }),
+});
+
+const availableTimes = [
+    { value: '1600', label: '4:00 PM', tablesAvailable: 3 },
+    { value: '1700', label: '5:00 PM', tablesAvailable: 1 },
+    { value: '1800', label: '6:00 PM', tablesAvailable: 2 },
+    { value: '1900', label: '7:00 PM', tablesAvailable: 1 },
+    { value: '2000', label: '8:00 PM', tablesAvailable: 1 },
+    { value: '2100', label: '9:00 PM', tablesAvailable: 2 },
+    { value: '2200', label: '10:00 PM', tablesAvailable: 4 },
+] as const;
+
+const BookingForm = () => {
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: '',
+            numberOfGuests: 0,
+        },
+    });
+
+    const onSubmit = (values: z.infer<typeof formSchema>) => {
+        console.log(values);
+    };
+
+    return (
+        <Form {...form}>
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className='space-y-8 pb-10 text-brand-gray-dark'
+            >
+                {/* Name input */}
+                <FormField
+                    control={form.control}
+                    name='name'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className='text-lg'>Name</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder='John Doe'
+                                    {...field}
+                                    className='rounded-xl border-brand-gray-dark bg-brand-black py-8 focus:ring-offset-brand-accent'
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                {/* Guests Input */}
+                <FormField
+                    control={form.control}
+                    name='numberOfGuests'
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel className='text-lg'>
+                                Number of Guests
+                            </FormLabel>
+                            <FormControl>
+                                <Input
+                                    type='number'
+                                    min={0}
+                                    max={10}
+                                    placeholder='0'
+                                    {...field}
+                                    className='rounded-xl border-brand-gray-dark bg-brand-black py-8 focus:ring-offset-brand-accent'
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <div className='flex w-full flex-col flex-wrap gap-4 md:flex-row'>
+                    {/* Date Input */}
+                    <FormField
+                        control={form.control}
+                        name='date'
+                        render={({ field }) => (
+                            <FormItem className='flex flex-col'>
+                                <FormLabel className='text-lg'>
+                                    Date of Reservation
+                                </FormLabel>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <FormControl>
+                                            <Button
+                                                variant={'outline'}
+                                                className={cn(
+                                                    'flex w-[240px] justify-start gap-4 rounded-xl border-brand-gray-dark bg-brand-black py-8 pl-3 text-left font-normal hover:bg-brand-gray-dark/30 hover:text-brand-white focus:ring-offset-brand-accent',
+                                                    !field.value &&
+                                                        'text-muted-foreground'
+                                                )}
+                                            >
+                                                <CalendarIcon color=' #4b4b4b' />
+                                                {field.value ? (
+                                                    format(field.value, 'PPP')
+                                                ) : (
+                                                    <span>Pick a date</span>
+                                                )}
+                                            </Button>
+                                        </FormControl>
+                                    </PopoverTrigger>
+                                    <PopoverContent
+                                        className='w-auto p-0'
+                                        align='start'
+                                    >
+                                        <Calendar
+                                            mode='single'
+                                            selected={field.value}
+                                            onSelect={field.onChange}
+                                            disabled={(date) =>
+                                                date < new Date() ||
+                                                date < new Date('1900-01-01')
+                                            }
+                                            initialFocus
+                                        />
+                                    </PopoverContent>
+                                </Popover>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    {/* Time Input */}
+                    <FormField
+                        control={form.control}
+                        name='time'
+                        render={({ field }) => (
+                            <FormItem className='flex flex-col'>
+                                <FormLabel className='text-lg'>Time</FormLabel>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                >
+                                    <FormControl>
+                                        <SelectTrigger className='w-[240px] justify-between rounded-xl border-brand-gray-dark bg-brand-black py-8 hover:bg-brand-gray-dark/30 hover:text-brand-white focus:ring-offset-brand-accent'>
+                                            <SelectValue placeholder='Select a time' />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectGroup>
+                                            <SelectLabel className='pl-8 font-medium'>
+                                                Available Times
+                                            </SelectLabel>
+                                            {availableTimes.map((time) => (
+                                                <SelectItem
+                                                    value={time.value}
+                                                    key={time.value}
+                                                >
+                                                    {time.label}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectGroup>
+                                    </SelectContent>
+                                </Select>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
+                <Button
+                    type='submit'
+                    className='w-full rounded-full bg-brand-accent py-8 text-brand-black hover:bg-brand-accent/80'
+                >
+                    BOOK A TABLE
+                </Button>
+            </form>
+        </Form>
+    );
+};
+
+export default BookingForm;
