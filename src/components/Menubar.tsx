@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { menu } from '@/app/data';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils';
 
 type MenuBarProps = {
     className?: string;

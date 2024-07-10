@@ -2,13 +2,13 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { routes } from '@/app/data';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils';
 
 export default function Navbar() {
     const activePath = usePathname();
     return (
         <header className='pointer-events-none fixed bottom-6 z-50 w-full'>
-            <nav className='bg-brand-white/80 text-brand-black pointer-events-auto mx-auto flex w-fit items-center gap-2 rounded-full p-2 backdrop-blur-sm md:gap-0'>
+            <nav className='pointer-events-auto mx-auto flex w-fit items-center gap-2 rounded-full bg-brand-white/80 p-2 text-brand-black backdrop-blur-sm md:gap-0'>
                 {/* <MobileNav />
                 <HoursTooltip /> */}
                 <ul className='hidden md:flex'>
@@ -30,7 +30,7 @@ export default function Navbar() {
 
                 <Link
                     href='/booking'
-                    className='bg-brand-black text-brand-white flex items-center rounded-full px-4 py-3 text-sm'
+                    className='flex items-center rounded-full bg-brand-black px-4 py-3 text-sm text-brand-white'
                 >
                     BOOK A TABLE
                 </Link>

@@ -1,6 +1,6 @@
 import React from 'react';
 import localFont from 'next/font/local';
-import { cn } from '@/utils/cn';
+import { cn } from '@/lib/utils';
 
 const bitterRoseFont = localFont({
     src: '../assets/fonts/Bitter-Rose.woff2',
@@ -23,7 +23,7 @@ export default function Heading({
             <h1
                 className={cn(
                     bitterRoseFont.className,
-                    'text-brand-accent animate-fade-down text-5xl md:text-6xl lg:text-[80px]',
+                    'animate-fade-down text-5xl text-brand-accent md:text-6xl lg:text-[80px]',
                     className
                 )}
             >
