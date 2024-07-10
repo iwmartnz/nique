@@ -2,6 +2,7 @@ export const menu = [
     {
         id: 1,
         category: 'Starters',
+        slug: 'starters',
         list: [
             {
                 id: 1,
@@ -51,6 +52,7 @@ export const menu = [
     {
         id: 2,
         category: 'Breakfast',
+        slug: 'breakfast',
         list: [
             {
                 id: 1,
@@ -114,6 +116,7 @@ export const menu = [
     {
         id: 3,
         category: 'Dinner',
+        slug: 'dinner',
         list: [
             {
                 id: 1,
@@ -177,6 +180,7 @@ export const menu = [
     {
         id: 4,
         category: 'Drinks',
+        slug: 'drinks',
         list: [
             {
                 id: 1,
