@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/utils/cn';
-import logo from '@/assets/images/restaurant/logo.svg';
+import logo from '../../public/logo.svg';
 
 type LogoProps = {
     className?: string;
