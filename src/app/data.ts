@@ -276,3 +276,10 @@ export const restaurantImages = [
     '/images/restaurant/restaurantbg4.webp',
     '/images/restaurant/home.webp',
 ];
+
+export const routes = [
+    { id: 1, label: 'Menu', path: '/menu' },
+    { id: 2, label: 'Restaurant', path: '/restaurant' },
+    { id: 3, label: 'Classes', path: '/classes' },
+    { id: 4, label: 'Contact', path: '/contact' },
+];
