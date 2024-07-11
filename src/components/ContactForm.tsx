@@ -3,7 +3,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { cn } from '@/lib/utils';
 import {
     Form,
     FormControl,
@@ -16,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 const formSchema = z.object({
     name: z.string({ required_error: 'Please add your name' }).min(2, {
@@ -35,13 +35,18 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+    const { toast } = useToast();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {},
+        defaultValues: { name: '', email: '', message: '' },
     });
 
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         console.log(values);
+        toast({
+            description: `Hey ${values.name}, Your message has been sent.`,
+        });
+        form.reset({ name: '', email: '', message: '' });
     };
 
     return (
