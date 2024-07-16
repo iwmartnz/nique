@@ -2,7 +2,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-
 import {
     Form,
     FormControl,
@@ -16,32 +15,16 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-
-const formSchema = z.object({
-    name: z.string({ required_error: 'Please add your name' }).min(2, {
-        message: 'Name must have at least 2 characters.',
-    }),
-    email: z
-        .string({ required_error: 'Please add your email address' })
-        .email(),
-    message: z
-        .string({ required_error: 'Please add your message.' })
-        .min(15, {
-            message: 'Message must have at least 15 characters.',
-        })
-        .max(160, {
-            message: 'Message must not have more than 30 characters.',
-        }),
-});
+import { contactSchema } from '@/lib/schemas';
 
 export default function ContactForm() {
     const { toast } = useToast();
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof contactSchema>>({
+        resolver: zodResolver(contactSchema),
         defaultValues: { name: '', email: '', message: '' },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
+    const onSubmit = (values: z.infer<typeof contactSchema>) => {
         console.log(values);
         toast({
             description: `Hey ${values.name}, Your message has been sent.`,

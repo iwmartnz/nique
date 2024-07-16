@@ -3,13 +3,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { format } from 'date-fns';
-
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -32,41 +30,26 @@ import {
     SelectLabel,
 } from '@/components/ui/select';
 import { CalendarIcon } from '@/components/Icon';
-
-const formSchema = z.object({
-    name: z.string().min(2, {
-        message: 'Name must have at least 2 characters.',
-    }),
-    numberOfGuests: z.coerce.number().min(0).max(10),
-    date: z.date({
-        required_error: 'A date of reservation is required.',
-    }),
-    time: z.string({
-        required_error: 'A time of reservation is required.',
-    }),
-});
-
-const availableTimes = [
-    { value: '1600', label: '4:00 PM', tablesAvailable: 3 },
-    { value: '1700', label: '5:00 PM', tablesAvailable: 1 },
-    { value: '1800', label: '6:00 PM', tablesAvailable: 2 },
-    { value: '1900', label: '7:00 PM', tablesAvailable: 1 },
-    { value: '2000', label: '8:00 PM', tablesAvailable: 1 },
-    { value: '2100', label: '9:00 PM', tablesAvailable: 2 },
-    { value: '2200', label: '10:00 PM', tablesAvailable: 4 },
-] as const;
+import { availableTimes } from '@/app/data';
+import { bookingSchema } from '@/lib/schemas';
+import { useToast } from './ui/use-toast';
 
 const BookingForm = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const { toast } = useToast();
+    const form = useForm<z.infer<typeof bookingSchema>>({
+        resolver: zodResolver(bookingSchema),
         defaultValues: {
             name: '',
             numberOfGuests: 0,
+            time: '',
         },
     });
 
-    const onSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values);
+    const onSubmit = (values: z.infer<typeof bookingSchema>) => {
+        toast({
+            description: `Hey ${values.name}, Your booking is confirmed.`,
+        });
+        form.reset();
     };
 
     return (
