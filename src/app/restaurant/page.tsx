@@ -20,9 +20,11 @@ export default function RestaurantPage() {
 
             <ul className='relative flex min-h-screen w-screen flex-col sm:flex-row sm:overflow-x-scroll'>
                 {restaurantImages.map((image) => (
-                    <li className='relative h-screen w-screen sm:min-w-max'>
+                    <li
+                        key={image.id}
+                        className='relative h-screen w-screen sm:min-w-max'
+                    >
                         <img
-                            key={image.id}
                             src={image.src}
                             alt=''
                             className='h-screen object-cover sm:object-none'
