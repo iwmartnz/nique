@@ -268,13 +268,13 @@ export const classes = [
 ];
 
 export const restaurantImages = [
-    '/images/restaurant/restaurantbg1.webp',
-    '/images/restaurant/restaurantbg2.webp',
-    '/images/restaurant/restaurantbg3.webp',
-    '/images/restaurant/contact.webp',
-    '/images/restaurant/menu.webp',
-    '/images/restaurant/restaurantbg4.webp',
-    '/images/restaurant/home.webp',
+    { id: 1, src: '/images/restaurant/restaurantbg1.webp' },
+    { id: 2, src: '/images/restaurant/restaurantbg2.webp' },
+    { id: 3, src: '/images/restaurant/restaurantbg3.webp' },
+    { id: 4, src: '/images/restaurant/contact.webp' },
+    { id: 5, src: '/images/restaurant/menu.webp' },
+    { id: 6, src: '/images/restaurant/restaurantbg4.webp' },
+    { id: 7, src: '/images/restaurant/home.webp' },
 ];
 
 export const routes = [
