@@ -11,16 +11,16 @@ export const ArrowRightIcon = ({
         <svg
             width={size}
             height={size}
-            viewBox='0 0 20 16'
+            viewBox='0 0 24 24'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
         >
             <path
-                d='M1 7.99993H19M19 7.99993L12 1M19 7.99993L12 14.9999'
-                stroke={color}
-                strokeWidth='1.8'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                d='M5.5 11.9999H21M21 11.9999L14 5M21 11.9999L14 18.9999'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
             />
         </svg>
     );
