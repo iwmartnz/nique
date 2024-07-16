@@ -293,3 +293,9 @@ export const availableTimes = [
     { value: '2100', label: '9:00 PM', tablesAvailable: 2 },
     { value: '2200', label: '10:00 PM', tablesAvailable: 4 },
 ];
+
+export const hoursOfOperation = [
+    { day: 'Monday', schedule: 'Closed' },
+    { day: 'Tue - Fri', schedule: '4pm - 8pm' },
+    { day: 'Sat - Sun', schedule: '5pm - 11pm' },
+];
