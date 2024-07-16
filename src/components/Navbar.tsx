@@ -74,6 +74,7 @@ const MobileNav = () => {
                         <DropdownMenuItem>
                             <Link
                                 href={route.path}
+                                key={route.id}
                                 onClick={() => {
                                     setIsOpen(false);
                                 }}
@@ -106,7 +107,10 @@ const HoursTooltip = () => {
                     <h3 className='pb-3 text-xl font-medium'>Opening Hours</h3>
                     <ul className='flex flex-col gap-2'>
                         {hoursOfOperation.map((item) => (
-                            <li className='flex w-full items-center justify-between gap-12 text-base font-medium'>
+                            <li
+                                key={item.day}
+                                className='flex w-full items-center justify-between gap-12 text-base font-medium'
+                            >
                                 {item.day}
                                 <span className='font-light'>
                                     {item.schedule}
