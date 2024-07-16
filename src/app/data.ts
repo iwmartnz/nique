@@ -283,3 +283,13 @@ export const routes = [
     { id: 3, label: 'Classes', path: '/classes' },
     { id: 4, label: 'Contact', path: '/contact' },
 ];
+
+export const availableTimes = [
+    { value: '1600', label: '4:00 PM', tablesAvailable: 3 },
+    { value: '1700', label: '5:00 PM', tablesAvailable: 1 },
+    { value: '1800', label: '6:00 PM', tablesAvailable: 2 },
+    { value: '1900', label: '7:00 PM', tablesAvailable: 1 },
+    { value: '2000', label: '8:00 PM', tablesAvailable: 1 },
+    { value: '2100', label: '9:00 PM', tablesAvailable: 2 },
+    { value: '2200', label: '10:00 PM', tablesAvailable: 4 },
+];
