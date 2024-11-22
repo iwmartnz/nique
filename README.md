@@ -33,3 +33,12 @@ src/
 ├── app/               # Next.js pages
 ├── components/        # Reusable UI components
 └── lib/               # Helper functions and configurations
+```
+
+## 💼 About Me
+
+Hi, I'm **Israel Martinez**! 👋  
+I'm a skilled **full-stack developer** with expertise in cutting-edge web technologies like **TypeScript**, **React**, **Next.js**, and **TailwindCSS**. I thrive on creating responsive, intuitive applications that transform designs into seamless and engaging user experiences.
+
+You can learn more about me and my work [here](https://github.com/iwmartnz).  
+Let’s connect and create something amazing together! 🚀
